@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "240918942404",
+    "project_id": "sohamdb-4f4e8",
+    "storage_bucket": "sohamdb-4f4e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240918942404:android:e2f7957b25403b628aef91",
+        "android_client_info": {
+          "package_name": "com.example.intern_asgn_persist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgeDzUOERAozqsdMuT1GdmlwHOEIU6ba8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
