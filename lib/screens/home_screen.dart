@@ -38,9 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ElevatedButton(onPressed: signOut, child: const Text("Signout")),
-      ),
+      // drawer: Drawer(
+      //   child: ElevatedButton(onPressed: signOut, child: const Text("Signout")),
+      // ),
       body: Column(
         children: [
           // Row(
@@ -94,11 +94,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(12.0),
-                      child: Text(
+                Padding(
+                  padding: const EdgeInsets.only(top: 30, right: 15, left: 20),
+                  child: Row(
+                    children: [
+                      const Text(
                         'Profile',
                         style: TextStyle(
                           color: Colors.white,
@@ -106,13 +106,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 30,
                         ),
                       ),
-                    ),
-                    const Spacer(), // Use Spacer to push the following widget to the end
-                    IconButton(
-                      onPressed: signOut,
-                      icon: const Icon(Icons.logout_rounded),
-                    ),
-                  ],
+                      const Spacer(), // Use Spacer to push the following widget to the end
+                      IconButton(
+                        onPressed: signOut,
+                        icon: const Icon(Icons.logout_rounded),
+                      ),
+                    ],
+                  ),
                 ),
 
                 const Center(
@@ -163,15 +163,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           IconButton(onPressed: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const UploadVideo()));
-                          }, icon: const Icon(Icons.add_circle_outline_outlined, color: Colors.white,size: 30,)),
-                          const Text('Add Outfit', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18),),
+                          }, icon: const Icon(Icons.add_circle_outline_outlined, color: Colors.white,size: 25,)),
+                          const Text('Add Outfit', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),),
                         ],
                       ),
                     ),
                     Column(
                       children: [
-                        IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.white,size: 30,)),
-                        const Text('Edit Profile', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18),),
+                        IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.white,size: 25,)),
+                        const Text('Edit Profile', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),),
                       ],
                     ),
                   ],
@@ -184,7 +184,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
           const SizedBox(height: 10),
           const Text("My Outfits", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 10),
           Expanded(
             child: StreamBuilder(
               stream: FirebaseFirestore.instance.collection('users').doc(currentUser?.uid).collection('outfits').snapshots(),
@@ -217,13 +216,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     DocumentSnapshot document = snapshot.data!.docs[index];
                     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: VideoCard(
-                        image: data['image'] ?? '',
-                        title: data['title'] ?? '',
-                        description: data['description'] ?? '',
-                      ),
+                    return VideoCard(
+                      image: data['image'] ?? '',
+                      title: data['title'] ?? '',
+                      description: data['description'] ?? '',
                     );
                   },
                 );

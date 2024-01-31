@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:intern_asgn_persist/auths/auth_page.dart';
 import 'package:intern_asgn_persist/firebase_options.dart';
 import 'package:intern_asgn_persist/models/saved_prod.dart';
-import 'package:intern_asgn_persist/screens/start.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  const StartScreen(),
+      home:  const AuthPage(),
     );
   }
 }

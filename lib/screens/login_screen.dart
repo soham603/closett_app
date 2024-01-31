@@ -21,7 +21,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 164, 165, 255),
+   //   backgroundColor: const Color.fromARGB(255, 164, 165, 255),
+      backgroundColor: Colors.white,
       body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -35,12 +36,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                           height: 170,
                           width: 200,
-                          child: Icon(Icons.star)),
+                          child: Image.asset('assets/logo.jpg')),
                       const SizedBox(
                         height: 10,
                       ),
                       Text(
-                        "To Do APP",
+                        "Closet App",
                         style: GoogleFonts.lato(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),
