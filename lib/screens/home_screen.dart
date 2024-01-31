@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Spacer(), // Use Spacer to push the following widget to the end
                       IconButton(
                         onPressed: signOut,
-                        icon: const Icon(Icons.logout_rounded),
+                        icon: const Icon(Icons.logout_rounded, color: Colors.white, size: 25),
                       ),
                     ],
                   ),

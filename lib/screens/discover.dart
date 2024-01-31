@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intern_asgn_persist/models/discover_cards.dart';
 
 class Discover extends StatefulWidget {
@@ -29,14 +30,59 @@ class _DiscoverState extends State<Discover> {
         toolbarHeight: 60,
         title: const Text(
           "Discover",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
         ),
         centerTitle: true,
       ),
-      drawer: const Drawer(
-        width: 240,
+      drawer: Drawer(
+        width: MediaQuery.of(context).size.width / 1.60,
         child: Column(
-          children: [],
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height / 15,),
+            Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                 Text('Filters & Sort', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),),
+                  IconButton(onPressed: () {
+                    Navigator.pop(context);
+                  }, icon: Icon(FontAwesomeIcons.x)),
+                ],
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 50,),
+            Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Suggested',  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
+                  IconButton(onPressed: () {}, icon: Icon(FontAwesomeIcons.plus)),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Followers',  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
+                  IconButton(onPressed: () {}, icon: Icon(FontAwesomeIcons.plus)),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: Row(              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Following', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
+                  IconButton(onPressed: () {}, icon: Icon(FontAwesomeIcons.plus)),
+                ],
+              ),
+            ),
+
+          ],
         ),
       ),
       body: Column(
