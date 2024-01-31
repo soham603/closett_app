@@ -2,10 +2,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:intern_asgn_persist/auths/auth_page.dart';
-import 'package:intern_asgn_persist/screens/add_prod.dart';
 import 'package:intern_asgn_persist/models/my_outfit.dart';
+import 'package:intern_asgn_persist/screens/add_prod.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key});
@@ -40,92 +38,152 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                future: getUserDetails(),
-                builder: (context, snapshot) {
-                  // loading
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  // error
-                  else if (snapshot.hasError) {
-                    return Text("Error: ${snapshot.error}");
-                  }
-                  // data received
-                  else if (snapshot.hasData) {
-                    // extract data
-                    Map<String, dynamic>? user = snapshot.data!.data();
-                    if (user == null) {
-                      return const Text("Error: User data is null");
-                    }
-                    return Text(
-                      "${user['name']}'s Closet" ?? "No Email",
-                      style: const TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold),
-                    );
-                  } else {
-                    return const Text("Unknown error occurred");
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
       drawer: Drawer(
         child: ElevatedButton(onPressed: signOut, child: const Text("Signout")),
       ),
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                child: Column(
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   children: [
+          //     Container(
+          //       child: Column(
+          //         children: [
+          //           Container(
+          //             height: 100,
+          //             width: 100,
+          //             decoration: BoxDecoration(
+          //               borderRadius: BorderRadius.circular(12),
+          //               border: Border.all(color: Colors.black, width: 3),
+          //             ),
+          //             child: const Icon(Iconsax.profile_circle),
+          //           ),
+          //           const Text("Name"),
+          //           const Text("user Name"),
+          //         ],
+          //       ),
+          //     ),
+          //
+          //
+          //     Container(
+          //       child: Row(
+          //         children: [
+          //           IconButton(
+          //             onPressed: () {
+          //               Navigator.push(
+          //                 context,
+          //                 MaterialPageRoute(builder: (context) => const UploadVideo()),
+          //               );
+          //             },
+          //             icon: const Icon(Icons.add_circle_outline_outlined, size: 50),
+          //           ),
+          //           const Text("Add New", style: TextStyle(fontSize: 20)),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // ),
+
+
+          Container(
+            height: 290,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              children: [
+                Row(
                   children: [
-                    Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.black, width: 3),
+                    const Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Text(
+                        'Profile',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                        ),
                       ),
-                      child: const Icon(Iconsax.profile_circle),
                     ),
-                    const Text("Name"),
-                    const Text("user Name"),
-                  ],
-                ),
-              ),
-              Container(
-                child: Row(
-                  children: [
+                    const Spacer(), // Use Spacer to push the following widget to the end
                     IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const UploadVideo()),
-                        );
-                      },
-                      icon: const Icon(Icons.add_circle_outline_outlined, size: 50),
+                      onPressed: signOut,
+                      icon: const Icon(Icons.logout_rounded),
                     ),
-                    const Text("Add New", style: TextStyle(fontSize: 20)),
                   ],
                 ),
-              ),
-            ],
+
+                const Center(
+                  child: CircleAvatar(
+                    child: Icon(Icons.account_circle, size: 50),
+                    radius: 30,
+                  ),
+                ),
+                const SizedBox(height: 5,),
+                FutureBuilder(
+                  future: getUserDetails(),
+                  builder: (context, AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    }
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    }
+                    if (!snapshot.hasData || snapshot.data == null) {
+                      return const Text('User data not available.');
+                    }
+
+                    var userData = snapshot.data!.data();
+                    String name = userData?['name'] ?? '';
+                    String email = userData?['email'] ?? '';
+
+                    return Column(
+                      children: [
+                        Text(
+                          name,
+                          style: const TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        Text(
+                          email,
+                          style: const TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                const SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Column(
+                        children: [
+                          IconButton(onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const UploadVideo()));
+                          }, icon: const Icon(Icons.add_circle_outline_outlined, color: Colors.white,size: 30,)),
+                          const Text('Add Outfit', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18),),
+                        ],
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.white,size: 30,)),
+                        const Text('Edit Profile', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18),),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
+
+
+
           const SizedBox(height: 10),
-          const Text("My Outfits"),
+          const Text("My Outfits", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
           Expanded(
             child: StreamBuilder(
@@ -159,10 +217,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     DocumentSnapshot document = snapshot.data!.docs[index];
                     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
-                    return VideoCard(
-                      image: data['image'] ?? '',
-                      title: data['title'] ?? '',
-                      description: data['description'] ?? '',
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: VideoCard(
+                        image: data['image'] ?? '',
+                        title: data['title'] ?? '',
+                        description: data['description'] ?? '',
+                      ),
                     );
                   },
                 );

@@ -71,6 +71,7 @@ class _UploadVideoState extends State<UploadVideo> {
       'title': titleController.text,
       'description': descriptionController.text,
       'image': urlDownload,
+      'isPressed': false,
     });
 
     // after upload setting controllers to null for next upload

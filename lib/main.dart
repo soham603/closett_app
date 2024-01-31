@@ -2,14 +2,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intern_asgn_persist/auths/auth_page.dart';
 import 'package:intern_asgn_persist/firebase_options.dart';
-import 'package:intern_asgn_persist/helpers/nav_bar.dart';
-import 'package:intern_asgn_persist/screens/chats.dart';
-import 'package:intern_asgn_persist/screens/home_screen.dart';
+import 'package:intern_asgn_persist/models/saved_prod.dart';
+import 'package:intern_asgn_persist/screens/start.dart';
+import 'package:provider/provider.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SavedProductsModel(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +30,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  const AuthPage(),
+      home:  const StartScreen(),
     );
   }
 }
