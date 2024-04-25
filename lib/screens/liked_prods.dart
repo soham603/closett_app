@@ -11,7 +11,12 @@ class SavedProducts extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Saved Products"),
+        toolbarHeight: 60,
+        title: const Text(
+          "Saved",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
+        ),
+        centerTitle: true,
       ),
       body: ListView.builder(
         itemCount: savedProductsModel.savedProducts.length,

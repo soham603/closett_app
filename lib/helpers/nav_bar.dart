@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intern_asgn_persist/screens/add_prod.dart';
 import 'package:intern_asgn_persist/screens/chats.dart';
 import 'package:intern_asgn_persist/screens/discover.dart';
 import 'package:intern_asgn_persist/screens/group_screen.dart';
@@ -42,16 +41,17 @@ class _ScreenControllerState extends State<ScreenController> {
         tabSize: 50,
         tabBarHeight: 55,
         textStyle: const TextStyle(
-          fontSize: 12,
+          fontSize: 13,
           color: Colors.black,
-          fontWeight: FontWeight.w800,
+          fontWeight: FontWeight.w600,
         ),
-        tabIconColor: Colors.blue[600],
+        //tabIconColor: Colors.blue[600],
+        tabIconColor: Colors.white,
         tabIconSize: 28.0,
         tabIconSelectedSize: 26.0,
-        tabSelectedColor: Colors.blue[900],
+        tabSelectedColor: Colors.black54,
         tabIconSelectedColor: Colors.white,
-        tabBarColor: Colors.white,
+        tabBarColor: Colors.blue,
         onTabItemSelected: (int value) {
           setState(() {
             currentIndex = value;

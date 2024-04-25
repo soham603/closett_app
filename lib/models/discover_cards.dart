@@ -63,15 +63,15 @@ class _DiscoverCardsState extends State<DiscoverCards> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
                         width: 88,
                         margin: const EdgeInsets.only(left: 5),
                         child: Column(
                           children: [
-                            Text(widget.title),
-                            Text(widget.description),
+                            Text(widget.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16,overflow: TextOverflow.ellipsis),),
+                            Text(widget.description, style: TextStyle(overflow: TextOverflow.ellipsis),),
                           ],
                         ),
                       ),

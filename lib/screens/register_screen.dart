@@ -25,7 +25,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 164, 165, 255),
+     // backgroundColor: const Color.fromARGB(255, 164, 165, 255),
+      backgroundColor: Colors.white,
       body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -35,10 +36,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Center(
                   child: Column(
                     children: [
-                      const SizedBox(
+                      SizedBox(
                           height: 120,
                           width: 150,
-                          child: Icon(Icons.star),
+                          child: Image.asset('assets/logo.jpg'),
                       ),
                       const SizedBox(height: 10,),
                       Text(
@@ -57,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                        color: Colors.deepPurple,
+                        color: Colors.red,
                         width: 3
                     ),
                   ),

@@ -88,7 +88,7 @@ class _UploadVideoState extends State<UploadVideo> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Upload Video"),
+        title: const Text("Upload New Post"),
       ),
       body: Center(
         child: Column(
